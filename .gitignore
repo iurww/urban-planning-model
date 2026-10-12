@@ -1,0 +1,38 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+trash/
+# Virtual environments
+.venv
+
+cache/
+data/
+datadoc/
+papers/downloads/
+
+wandb/
+
+tests/
+
+.vscode/
+.cursor/
+
+*.tar.gz
+
+outputs/
+tmp/
+
+# Keep source-code data loaders and their tests; only generated project data is ignored.
+!src/upmodel/data/
+!src/upmodel/data/**
+!tests/
+!tests/**
+
+# Re-ignore bytecode even under the un-ignored source trees above.
+**/__pycache__/
+*.py[oc]

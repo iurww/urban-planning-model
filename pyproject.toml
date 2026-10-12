@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scripts", "src/upmodel"]
+
+[project]
+name = "up-model"
+version = "0.1.0"
+description = "城市规划基础模型"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "eclipse-sumo>=1.26.0",
+    "folium>=0.12",
+    "geopandas>=1.1.1",
+    "gurobipy>=11.0.0",
+    "huggingface-hub>=1.25.1",
+    "mapclassify>=2.10.0",
+    "matplotlib>=3.10.8",
+    "networkx>=3.6.1",
+    "numpy>=2.3.5",
+    "osmium>=4.3.1",
+    "osmnx>=2.0.7",
+    "sumolib>=1.26.0",
+    "torch>=2.6.0",
+    "tqdm>=4.67.0",
+    "traci>=1.26.0",
+    "wandb>=0.27.0",
+]
+
+[project.scripts]
+up-model-data = "scripts.cli:main"
+up-model-eval = "upmodel.evaluate:main"
+up-model-train = "upmodel.train:main"

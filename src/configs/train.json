@@ -1,0 +1,85 @@
+{
+  "data_root": "data/sft",
+  "test_data_root": "data/test",
+  "tile_ids": [],
+  "output_dir": "outputs/upmodel",
+  "seed": 42,
+  "device": "auto",
+  "stage": "sft",
+  "num_workers": 0,
+  "land_use_order": [],
+  "model": {
+    "hidden_dim": 128,
+    "entity_layers": 2,
+    "decision_layers": 2,
+    "attention_heads": 4,
+    "dropout": 0.1,
+    "signal_history_steps": 4
+  },
+  "sft": {
+    "epochs": 30,
+    "batch_size": 64,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "label_smoothing": 0.05,
+    "max_grad_norm": 1.0,
+    "task_balanced": true,
+    "test_interval": 3,
+    "road_permutations": 8,
+    "log_interval_steps": 1
+  },
+  "ppo": {
+    "iterations": 300,
+    "episodes_per_task": {
+      "land": 196,
+      "road": 128,
+      "signal": 96
+    },
+    "enabled_tasks": ["land", "road", "signal"],
+    "learning_rate": 0.00003,
+    "learning_rate_end": 0.000003,
+    "weight_decay": 0.0001,
+    "update_epochs": 2,
+    "minibatch_size": 128,
+    "clip_ratio": 0.2,
+    "value_coef": 0.5,
+    "entropy_coef": 0.01,
+    "initial_policy_logit_scale": 0.7,
+    "max_grad_norm": 1.0,
+    "gamma": {
+      "land": 1.0,
+      "road": 1.0,
+      "signal": 0.99
+    },
+    "gae_lambda": {
+      "land": 0.99,
+      "road": 0.99,
+      "signal": 0.95
+    },
+    "kl_beta_start": 0.0,
+    "kl_beta_end": 0.0,
+    "target_kl": 0.05,
+    "task_balanced": true,
+    "normalize_rewards": true,
+    "test_interval": 3,
+    "test_episodes": 1,
+    "test_deterministic": true,
+    "signal_rollout_workers": 10,
+    "road_baseline_manifest": null,
+    "road_baseline_manifest_sha256": null,
+    "road_center_rewards": false
+  },
+  "wandb": {
+    "project": "up-model-ppo",
+    "entity": null,
+    "name": null,
+    "mode": "offline",
+    "tags": ["ppo", "multi-task"]
+  },
+  "evaluation": {
+    "tasks": ["land", "road", "signal"],
+    "episodes": 1,
+    "deterministic": true,
+    "seed": 0
+  }
+}
